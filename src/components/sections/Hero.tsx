@@ -3,30 +3,24 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { personalInfo } from '@/data'
-import { ArrowRight, Download, Brain, Code, HelpCircle, X, CheckCircle } from 'lucide-react'
+import { ArrowRight, HelpCircle, X, CheckCircle, Brain, Code } from 'lucide-react'
 import mantuProfileCard from '@/assets/images/mantu_profile_card_1782106390625.png'
 
 export default function Hero() {
   const [downloadModal, setDownloadModal] = useState(false)
-  
-  // State for step popups
   const [activeStepPopup, setActiveStepPopup] = useState<number | null>(null)
-
-  // State for Section 2 (Weekly challenges card) tooltip
-  const [showWeeklyTooltip, setShowWeeklyTooltip] = useState(false)
 
   const handleScrollToId = (e: React.MouseEvent, id: string) => {
     e.preventDefault()
     const target = document.getElementById(id)
     if (target) {
       window.scrollTo({
-        top: target.offsetTop - 80,
+        top: target.offsetTop - 68,
         behavior: 'smooth',
       })
     }
   }
 
-  // Tech tags for step popups
   const stepTechTags = [
     'Git · GitHub Actions · CI/CD',
     'Vercel · AWS · Render · Docker',
@@ -34,17 +28,18 @@ export default function Hero() {
   ]
 
   return (
-    <section id="about" className="pt-28 pb-20 bg-white font-sans border-b border-[#f3f4f6]">
-      <div className="max-w-[1200px] mx-auto px-6 sm:px-12 space-y-24">
+    <section id="about" className="pt-[68px] min-h-screen flex items-center bg-white font-sans border-b border-[#f3f4f6]">
+      <div className="max-w-[1200px] mx-auto px-6 sm:px-[48px] py-[40px] md:py-[80px] w-full space-y-[64px] md:space-y-[80px]">
         
-        {/* HERO HEADER ROW (55% / 45% columns) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* HERO HEADER GRID — EXACT DECO 55% / 45% COLUMNS */}
+        <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr] gap-[40px] md:gap-[64px] items-center">
           
-          {/* Left Column (55%) */}
-          <div className="lg:col-span-7 space-y-6">
-            <h1 className="text-clamp-h1 font-[800] leading-[1.1] text-[#0f0f1a] tracking-[-0.02em] font-sans">
+          {/* LEFT COLUMN (55%) */}
+          <div className="space-y-[20px] md:space-y-[24px]">
+            {/* EXACT DECO HEADLINE WITH BLUE BOX */}
+            <h1 className="font-sans font-[800] text-[clamp(2.2rem,8vw,3rem)] md:text-[clamp(2.6rem,4.5vw,4.2rem)] lg:text-[clamp(2.6rem,4.5vw,4.2rem)] text-[#0f0f1a] leading-[1.08] tracking-[-0.03em] m-0 text-left">
               Here{' '}
-              <span className="bg-[#2563eb] text-white px-3 py-1.5 rounded-[8px] inline-block scale-100 transform transform-origin-center">
+              <span className="inline-block bg-[#2563eb] text-[#ffffff] px-[12px] py-[2px] pb-[4px] rounded-[7px] font-[800] text-inherit leading-[1.08] align-baseline mx-[2px] shadow-sm select-none">
                 developers
               </span>{' '}
               <br className="hidden sm:inline" />
@@ -52,306 +47,226 @@ export default function Hero() {
               web experiences
             </h1>
 
-            <p className="text-[#6b7280] text-base leading-relaxed max-w-[460px] font-normal">
+            {/* DECO SUBTEXT */}
+            <p className="text-[#6b7280] text-[1rem] leading-[1.65] font-[400] max-w-[420px] text-left">
               With MERN stack, Agentic AI, and modern tooling — Mantu builds scalable web apps and intelligent AI-powered products from Patna, India.
             </p>
 
-            {/* Button group list */}
-            <div className="flex flex-wrap gap-4 pt-4">
+            {/* BUTTON ROW — EXACT DECO STYLE */}
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-[10px] sm:gap-[12px] pt-[8px]">
+              {/* Button 1: Get Started */}
               <a
                 href="#contact"
                 onClick={(e) => handleScrollToId(e, 'contact')}
-                className="bg-[#2563eb] text-white font-bold rounded-[8px] px-6 py-3 text-sm sm:text-base inline-flex items-center gap-2 hover:bg-blue-700 active:scale-98 transition-all shadow-md cursor-pointer"
+                className="bg-[#2563eb] text-white text-[0.9rem] font-semibold px-[22px] py-[11px] rounded-[8px] cursor-pointer inline-flex items-center justify-center gap-[6px] transition-all duration-200 hover:bg-[#1d4ed8] hover:translate-y-[-1px] active:translate-y-[0px] shadow-sm text-center"
               >
                 <span>Get Started</span>
-                <ArrowRight className="w-4 h-4" />
+                <span>&rarr;</span>
               </a>
 
+              {/* Button 2: Download */}
               <button
                 onClick={() => setDownloadModal(true)}
-                className="bg-white border-1.5 border-[#e5e7eb] text-[#0f0f1a] font-bold rounded-[8px] px-6 py-3 text-sm sm:text-base inline-flex items-center gap-2 hover:bg-[#f9fafb] active:scale-98 transition-all cursor-pointer"
+                className="bg-white text-[#0f0f1a] text-[0.9rem] font-medium px-[20px] py-[10px] rounded-[8px] border-[1.5px] border-[#e5e7eb] cursor-pointer inline-flex items-center justify-center gap-[6px] transition-all duration-200 hover:bg-[#f9fafb] hover:border-[#d1d5db]"
               >
-                <span>Download CV</span>
-                <Download className="w-4 h-4 text-slate-400" />
+                <span>Download</span>
+                <span className="text-[#6b7280]">&darr;</span>
               </button>
             </div>
 
-            {/* Have any question link */}
-            <div className="pt-2">
+            {/* HELPER LINK BELOW BUTTONS */}
+            <div className="pt-[4px] text-left">
               <a
-                href="#faq"
-                onClick={(e) => handleScrollToId(e, 'faq')}
-                className="text-xs sm:text-sm text-[#6b7280] font-semibold hover:text-[#2563eb] transition-colors flex items-center gap-1.5 w-fit"
+                href="#contact"
+                onClick={(e) => handleScrollToId(e, 'contact')}
+                className="text-[0.82rem] text-[#9ca3af] hover:text-[#2563eb] transition-colors inline-block cursor-pointer font-medium"
               >
-                <HelpCircle className="w-4 h-4 text-[#2563eb]" />
-                <span>↓ Have any question? Ask Mantu</span>
+                &darr; Have any question?
               </a>
             </div>
           </div>
 
-          {/* Right Column (45%) */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end relative">
-            
-            {/* Visual Frame */}
-            <div className="relative w-full max-w-[380px] select-none group">
+          {/* RIGHT COLUMN (45%) WITH LARGE PHOTO ID CARD */}
+          <div className="relative w-full flex justify-center lg:justify-end">
+            {/* ILLUSTRATION CARD CANVAS WITH OVERFLOW FLUID FLOATING CARDS */}
+            <div className="relative w-full max-w-[280px] sm:max-w-[310px] md:max-w-[335px] select-none group">
               
-              {/* Profile Card Image Container */}
-              <div className="w-full h-[500px] sm:h-[500px] rounded-[24px] overflow-hidden border border-[#e5e7eb] bg-slate-50 shadow-2xl relative">
+              {/* STATIC DECO ABSTRACT CIRCLES BEHIND CARD */}
+              {/* Circle 1 */}
+              <div className="absolute -top-[50px] -right-[50px] w-[200px] h-[200px] border-[1.5px] border-indigo-100/40 rounded-full select-none pointer-events-none z-0"></div>
+              {/* Circle 2 */}
+              <div className="absolute -bottom-[40px] -left-[40px] w-[160px] h-[160px] bg-indigo-50/10 rounded-full select-none pointer-events-none z-0 blur-lg"></div>
+
+              {/* Outer image card */}
+              <div className="relative w-full h-[320px] sm:h-[420px] md:h-[460px] bg-gradient-to-br from-[#1e1b4b] via-[#312e81] to-[#6366f1] rounded-[24px] overflow-hidden shadow-2xl border border-indigo-200/10 z-10">
+                {/* Photo inside */}
                 <img
                   src={mantuProfileCard}
-                  alt="Mantu Kumar - Full Stack Developer ID Card"
-                  className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-500"
+                  alt="Mantu Kumar ID Card"
+                  className="w-full h-full object-cover object-top rounded-[24px] group-hover:scale-[1.015] transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
+
+                {/* DOT GRID PATTERN OVERLAY */}
+                <div 
+                  className="absolute inset-0 opacity-[0.03] select-none pointer-events-none"
+                  style={{
+                    backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+                    backgroundSize: '16px 16px'
+                  }}
+                ></div>
               </div>
 
-              {/* FLOATING CARD 1 (bottom-left of image, -20px left, -20px bottom) */}
+              {/* FLOATING CARD 1 (exact Deco "Quickly code" card with -translate-x to overflow half-on) */}
               <div
-                className="absolute -left-5 -bottom-5 bg-white/95 backdrop-blur-md rounded-[14px] p-3.5 pr-5 border border-[#e5e7eb] shadow-[0_8px_30px_rgba(0,0,0,0.12)] z-30 flex items-center gap-3 select-none"
+                className="absolute left-[-12px] sm:left-[-24px] bottom-[28px] bg-white/96 backdrop-blur-[10px] border border-white/80 rounded-[14px] p-[10px] pr-[14px] sm:p-[14px] sm:pr-[18px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-30 flex items-center gap-[10px] sm:gap-[12px] min-w-[170px] sm:min-w-[210px] scale-[0.85] sm:scale-100 origin-left"
                 style={{
-                  animation: 'floatUp 3s ease-in-out infinite alternate'
+                  animation: 'floatUp 3s ease-in-out infinite'
                 }}
               >
-                <div className="w-9 h-9 rounded-[8px] bg-[#dbeafe] flex items-center justify-center shrink-0">
-                  <Code className="w-5 h-5 text-[#2563eb]" />
+                <div className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] bg-[#dbeafe] rounded-[9px] flex items-center justify-center shrink-0">
+                  <Code className="w-[18px] h-[18px] text-[#2563eb]" />
                 </div>
-                <div className="text-left">
-                  <p className="font-extrabold text-[#0f0f1a] text-xs">Quickly code</p>
-                  <p className="text-[10px] text-[#6b7280] font-medium leading-tight">Writing scalable architecture</p>
+                <div className="text-left font-sans">
+                  <p className="font-[700] text-[#0f0f1a] text-[11px] sm:text-[0.875rem] leading-[1.2]">Quickly code</p>
+                  <p className="text-[9px] sm:text-[0.75rem] text-[#9ca3af] mt-[2px] leading-[1.3] font-medium">Writing scalable architecture</p>
                 </div>
               </div>
 
-              {/* FLOATING CARD 2 (top-right of image, -20px right, 40px top) */}
+              {/* FLOATING CARD 2 (exact Deco "Safe cloud" card with translate-x to overflow half-on) */}
               <div
-                className="absolute -right-5 top-10 bg-white/95 backdrop-blur-md rounded-[14px] p-3.5 pr-5 border border-[#e5e7eb] shadow-[0_8px_30px_rgba(0,0,0,0.12)] z-30 flex items-center gap-3 select-none"
+                className="absolute right-[-12px] sm:right-[-24px] top-[144px] bg-white/96 backdrop-blur-[10px] border border-white/80 rounded-[14px] p-[10px] pr-[14px] sm:p-[14px] sm:pr-[18px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-30 flex items-center gap-[10px] sm:gap-[12px] min-w-[170px] sm:min-w-[200px] scale-[0.85] sm:scale-100 origin-right"
                 style={{
-                  animation: 'floatDown 3s ease-in-out infinite alternate',
+                  animation: 'floatDown 3s ease-in-out infinite',
                   animationDelay: '1.5s'
                 }}
               >
-                <div className="w-9 h-9 rounded-[8px] bg-[#dcfce7] flex items-center justify-center shrink-0">
-                  <Brain className="w-5 h-5 text-[#16a34a]" />
+                <div className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] bg-[#dcfce7] rounded-[9px] flex items-center justify-center shrink-0">
+                  <Brain className="w-[18px] h-[18px] text-[#16a34a]" />
                 </div>
-                <div className="text-left">
-                  <p className="font-extrabold text-[#0f0f1a] text-xs">AI Powered</p>
-                  <p className="text-[10px] text-[#6b7280] font-medium leading-tight">LLMs and smart agent logic</p>
+                <div className="text-left font-sans">
+                  <p className="font-[700] text-[#0f0f1a] text-[11px] sm:text-[0.875rem] leading-[1.2]">AI Powered</p>
+                  <p className="text-[9px] sm:text-[0.75rem] text-[#9ca3af] mt-[2px] leading-[1.3] font-medium">Built with Gemini &amp; LangChain</p>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
 
-        {/* SECTION 2 & 3: GRID (Left: Weekly Highlights, Right: Numbered steps) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch pt-8">
+        {/* BELOW HERO — EXACT DECO BOTTOM SECTION (feature card + numbered steps) */}
+        <div className="grid grid-cols-1 lg:grid-cols-[45fr_55fr] gap-[40px] items-start pb-[40px] md:pb-[80px]">
           
-          {/* LEFT: Section 2 Feature Highlight Card (60%) */}
-          <div className="lg:col-span-7 flex flex-col justify-stretch">
-            <div
-              onMouseEnter={() => setShowWeeklyTooltip(true)}
-              onMouseLeave={() => setShowWeeklyTooltip(false)}
-              className="border border-[#e5e7eb] rounded-[20px] overflow-hidden flex flex-col sm:flex-row h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl relative group bg-white shadow-[0_1px_3px_rgba(0,0,0,0.06)]"
-            >
+          {/* LEFT — Feature Highlight Card (Exact style) */}
+          <div className="border border-[#e5e7eb] rounded-[20px] overflow-hidden bg-white shadow-sm flex flex-col justify-start">
+            {/* Top colored image area */}
+            <div className="w-full h-[200px] bg-gradient-to-br from-[#6366f1] via-[#8b5cf6] to-[#a855f7] relative overflow-hidden shrink-0">
+              {/* CSS visual elements */}
+              <div className="absolute top-[20px] right-[20px] w-[140px] h-[140px] border border-white/10 rounded-full select-none pointer-events-none"></div>
+              <div className="absolute -bottom-[30px] left-[10px] w-[110px] h-[110px] border border-white/5 rounded-full select-none pointer-events-none"></div>
+              <div className="absolute top-[40%] right-[30%] w-[180px] h-[180px] bg-white/5 rounded-full select-none pointer-events-none blur-sm"></div>
+
+              {/* Dot pattern */}
+              <div 
+                className="absolute inset-0 opacity-[0.06] select-none pointer-events-none"
+                style={{
+                  backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+                  backgroundSize: '12px 12px'
+                }}
+              ></div>
+
+              {/* Floating micro-badge */}
+              <div className="absolute bottom-[20px] left-[20px] bg-white/15 backdrop-blur-[8px] border border-white/25 rounded-[10px] px-[14px] py-[8px] text-[0.8rem] font-semibold text-white select-none">
+                8+ Projects Shipped 🚀
+              </div>
+            </div>
+
+            {/* Bottom text Area */}
+            <div className="p-[24px] text-left">
+              <h3 className="font-[700] text-[1.05rem] text-[#0f0f1a] m-0 mb-[8px]">
+                Open Source &amp; Real Projects
+              </h3>
+              <p className="text-[0.9rem] text-[#6b7280] leading-[1.55] m-0">
+                Every month I ship real projects — from MERN apps to Agentic AI tools. Check GitHub for live work.
+              </p>
               
-              {/* Left colorful side gradient */}
-              <div className="sm:w-[40%] bg-gradient-to-br from-[#6366f1] via-[#8b5cf6] to-[#a855f7] p-8 flex flex-col justify-between relative overflow-hidden shrink-0 min-h-[220px]">
-                {/* Abstract vector graphics inside */}
-                <div className="absolute top-2 right-2 w-28 h-28 border border-white/10 rounded-full select-none pointer-events-none"></div>
-                <div className="absolute bottom-[-10px] left-5 w-20 h-20 bg-white/10 rounded-full select-none pointer-events-none blur-md"></div>
-                <div className="absolute top-1/2 left-10 w-24 h-[1px] bg-white/15 rotate-45 select-none pointer-events-none"></div>
-
-                <div className="relative z-10 text-white space-y-1">
-                  <span className="text-[10px] uppercase font-mono font-bold text-indigo-200 tracking-wider">
-                    Interactive Lab
-                  </span>
-                  <h4 className="font-black text-xl leading-tight">
-                    Code Base
-                  </h4>
-                </div>
-
-                <div className="bg-white/10 backdrop-blur-xs px-3 py-1.5 rounded-lg border border-white/10 text-[11px] text-white font-mono font-bold uppercase w-fit inline-block tracking-wide select-none">
-                  ⚡ 8+ SHIPPED
-                </div>
+              <div className="mt-[14px]">
+                <a
+                  href={personalInfo.github}
+                  target="_blank"
+                  rel="noreferrer referrerPolicy"
+                  className="text-[#2563eb] text-[0.875rem] font-[600] inline-flex items-center gap-[4px] hover:gap-[8px] transition-[gap] duration-200"
+                >
+                  <span>View Projects</span>
+                  <span>&rarr;</span>
+                </a>
               </div>
-
-              {/* Right text details side */}
-              <div className="p-8 sm:p-10 flex flex-col justify-between flex-1">
-                <div className="space-y-4">
-                  <span className="text-[10px] uppercase font-mono font-bold text-[#2563eb] tracking-widest block">
-                    Open Source Work
-                  </span>
-                  <h3 className="text-[#0f0f1a] font-extrabold text-xl sm:text-2xl leading-snug">
-                    Open Source &amp; Real Projects
-                  </h3>
-                  <p className="text-[#6b7280] text-sm leading-relaxed font-normal">
-                    Every month I ship real projects — from MERN apps to Agentic AI tools. Check my GitHub for live work. All repositories are documented.
-                  </p>
-                </div>
-
-                <div className="pt-6 border-t border-slate-100 flex items-center justify-between text-xs mt-6">
-                  <a
-                    href="https://github.com"
-                    target="_blank"
-                    rel="noreferrer referrerPolicy"
-                    className="text-[#2563eb] font-extrabold text-sm flex items-center gap-1.5 hover:underline transition-all"
-                  >
-                    <span>Check GitHub Repos</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-
-              {/* Weekly Highlight Tooltip Above Card */}
-              <AnimatePresence>
-                {showWeeklyTooltip && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute bottom-[calc(100%+14px)] left-1/2 -translate-x-1/2 z-30"
-                  >
-                    <div className="bg-[#0f0f1a] text-white font-bold text-xs rounded-lg px-4.5 py-2.5 shadow-2xl relative whitespace-nowrap border border-slate-800 text-center">
-                      <p>🚀 8+ Projects Shipped &mdash; View All &rarr;</p>
-                      <div className="absolute w-2.5 h-2.5 bg-[#0f0f1a] border-r border-[#0f0f1a] border-b rotate-45 top-full left-1/2 -translate-x-1/2 -mt-1.5"></div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           </div>
 
-          {/* RIGHT: Section 3 Numbered Steps (40%) */}
-          <div className="lg:col-span-5 flex flex-col justify-between py-2">
-            <h4 className="text-[10px] uppercase font-mono font-bold text-slate-400 tracking-widest mb-6 block">
-              // Portfolio Roadmap Actions
-            </h4>
-
-            <div className="space-y-6 relative">
-              
-              {/* Step 1 */}
-              <div
-                className="flex gap-4 items-start relative group"
-                onMouseEnter={() => setActiveStepPopup(0)}
-                onMouseLeave={() => setActiveStepPopup(null)}
-              >
-                <div className="w-9 h-9 rounded-full border-[1.5px] border-[#e5e7eb] text-[#0f0f1a] font-bold text-sm flex items-center justify-center shrink-0 bg-white z-10 transition-colors group-hover:border-[#2563eb] group-hover:text-[#2563eb]">
+          {/* RIGHT — Numbered steps (exact Deco 1-2-3 list) */}
+          <div className="pt-[8px] w-full text-left">
+            
+            {/* Step 1 */}
+            <div className="flex gap-[16px]">
+              {/* Left Column (Number + Line) */}
+              <div className="flex flex-col items-center">
+                <div className="w-[36px] h-[36px] border-[1.5px] border-[#e5e7eb] rounded-full flex items-center justify-center font-[700] text-[0.875rem] text-[#0f0f1a] bg-white shrink-0 transition-all duration-200 hover:border-[#2563eb] hover:bg-[#eff6ff] hover:text-[#2563eb] cursor-default select-none">
                   1
                 </div>
-                {/* Dotted Vertical Connector Line */}
-                <div className="absolute left-[17px] top-9 w-[1px] h-10 border-l-2 border-dashed border-[#e5e7eb] z-0"></div>
-
-                <div className="space-y-1">
-                  <h5 className="font-extrabold text-[#0f0f1a] text-sm sm:text-base leading-tight">
-                    Explore my GitHub repositories.
-                  </h5>
-                  <p className="text-[#6b7280] text-xs sm:text-sm leading-relaxed font-normal">
-                    All projects are open source, documented, and deployed.
-                  </p>
-                </div>
-
-                {/* Step Hover Slide-In Popup from Right */}
-                <AnimatePresence>
-                  {activeStepPopup === 0 && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 15 }}
-                      className="absolute left-full ml-4 top-0 z-30 bg-white border border-[#e5e7eb] rounded-[10px] p-3 shadow-xl text-left flex items-center gap-2.5 whitespace-nowrap min-w-[200px]"
-                    >
-                      <CheckCircle className="w-4 h-4 text-[#2563eb]" />
-                      <div>
-                        <p className="text-xs font-bold text-slate-800">Available stack</p>
-                        <p className="text-[10px] text-slate-500 font-mono">{stepTechTags[0]}</p>
-                      </div>
-                      <X className="w-3.5 h-3.5 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors ml-auto" onClick={() => setActiveStepPopup(null)} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div className="w-[1.5px] flex-1 min-h-[32px] bg-[#f3f4f6]" />
               </div>
+              {/* Right Column (Text) */}
+              <div className="pt-[6px] pb-[28px]">
+                <h4 className="font-[700] text-[0.95rem] text-[#0f0f1a] m-0 mb-[6px]">
+                  Explore my GitHub repositories.
+                </h4>
+                <p className="font-[450] text-[0.875rem] text-[#6b7280] leading-[1.55] m-0">
+                  All projects are open source, documented, and fully deployed — ready to explore.
+                </p>
+              </div>
+            </div>
 
-              {/* Step 2 */}
-              <div
-                className="flex gap-4 items-start relative group"
-                onMouseEnter={() => setActiveStepPopup(1)}
-                onMouseLeave={() => setActiveStepPopup(null)}
-              >
-                <div className="w-9 h-9 rounded-full border-[1.5px] border-[#e5e7eb] text-[#0f0f1a] font-bold text-sm flex items-center justify-center shrink-0 bg-white z-10 transition-colors group-hover:border-[#2563eb] group-hover:text-[#2563eb]">
+            {/* Step 2 */}
+            <div className="flex gap-[16px]">
+              {/* Left Column (Number + Line) */}
+              <div className="flex flex-col items-center">
+                <div className="w-[36px] h-[36px] border-[1.5px] border-[#e5e7eb] rounded-full flex items-center justify-center font-[700] text-[0.875rem] text-[#0f0f1a] bg-white shrink-0 transition-all duration-200 hover:border-[#2563eb] hover:bg-[#eff6ff] hover:text-[#2563eb] cursor-default select-none">
                   2
                 </div>
-                {/* Dotted Vertical Connector Line */}
-                <div className="absolute left-[17px] top-9 w-[1px] h-10 border-l-2 border-dashed border-[#e5e7eb] z-0"></div>
-
-                <div className="space-y-1">
-                  <h5 className="font-extrabold text-[#0f0f1a] text-sm sm:text-base leading-tight">
-                    Visit live deployments.
-                  </h5>
-                  <p className="text-[#6b7280] text-xs sm:text-sm leading-relaxed font-normal">
-                    Each project runs live &mdash; on Vercel, Render, or Netlify.
-                  </p>
-                </div>
-
-                {/* Step Hover Slide-In Popup from Right */}
-                <AnimatePresence>
-                  {activeStepPopup === 1 && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 15 }}
-                      className="absolute left-full ml-4 top-0 z-30 bg-white border border-[#e5e7eb] rounded-[10px] p-3 shadow-xl text-left flex items-center gap-2.5 whitespace-nowrap min-w-[200px]"
-                    >
-                      <CheckCircle className="w-4 h-4 text-[#2563eb]" />
-                      <div>
-                        <p className="text-xs font-bold text-slate-800">Hosting stack</p>
-                        <p className="text-[10px] text-slate-500 font-mono">{stepTechTags[1]}</p>
-                      </div>
-                      <X className="w-3.5 h-3.5 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors ml-auto" onClick={() => setActiveStepPopup(null)} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <div className="w-[1.5px] flex-1 min-h-[32px] bg-[#f3f4f6]" />
               </div>
+              {/* Right Column (Text) */}
+              <div className="pt-[6px] pb-[28px]">
+                <h4 className="font-[700] text-[0.95rem] text-[#0f0f1a] m-0 mb-[6px]">
+                  Visit live deployments.
+                </h4>
+                <p className="font-[450] text-[0.875rem] text-[#6b7280] leading-[1.55] m-0">
+                  Every project runs live on Vercel, Render, or Netlify — zero setup needed.
+                </p>
+              </div>
+            </div>
 
-              {/* Step 3 */}
-              <div
-                className="flex gap-4 items-start relative group"
-                onMouseEnter={() => setActiveStepPopup(2)}
-                onMouseLeave={() => setActiveStepPopup(null)}
-              >
-                <div className="w-9 h-9 rounded-full border-[1.5px] border-[#e5e7eb] text-[#0f0f1a] font-bold text-sm flex items-center justify-center shrink-0 bg-white z-10 transition-colors group-hover:border-[#2563eb] group-hover:text-[#2563eb]">
+            {/* Step 3 */}
+            <div className="flex gap-[16px]">
+              {/* Left Column (Number + Line) */}
+              <div className="flex flex-col items-center">
+                <div className="w-[36px] h-[36px] border-[1.5px] border-[#e5e7eb] rounded-full flex items-center justify-center font-[700] text-[0.875rem] text-[#0f0f1a] bg-white shrink-0 transition-all duration-200 hover:border-[#2563eb] hover:bg-[#eff6ff] hover:text-[#2563eb] cursor-default select-none">
                   3
                 </div>
-
-                <div className="space-y-1">
-                  <h5 className="font-extrabold text-[#0f0f1a] text-sm sm:text-base leading-tight">
-                    Reach out to collaborate.
-                  </h5>
-                  <p className="text-[#6b7280] text-xs sm:text-sm leading-relaxed font-normal">
-                    Have a project idea? Let&apos;s build something together.
-                  </p>
-                </div>
-
-                {/* Step Hover Slide-In Popup from Right */}
-                <AnimatePresence>
-                  {activeStepPopup === 2 && (
-                    <motion.div
-                      initial={{ opacity: 0, x: 15 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 15 }}
-                      className="absolute left-full ml-4 top-0 z-30 bg-white border border-[#e5e7eb] rounded-[10px] p-3 shadow-xl text-left flex items-center gap-2.5 whitespace-nowrap min-w-[200px]"
-                    >
-                      <CheckCircle className="w-4 h-4 text-[#2563eb]" />
-                      <div>
-                        <p className="text-xs font-bold text-slate-800">Scoping channels</p>
-                        <p className="text-[10px] text-slate-500 font-mono">{stepTechTags[2]}</p>
-                      </div>
-                      <X className="w-3.5 h-3.5 text-slate-400 hover:text-slate-600 cursor-pointer transition-colors ml-auto" onClick={() => setActiveStepPopup(null)} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
               </div>
-
+              {/* Right Column (Text - No padding at bottom on last step) */}
+              <div className="pt-[6px] pb-4">
+                <h4 className="font-[700] text-[0.95rem] text-[#0f0f1a] m-0 mb-[6px]">
+                  Reach out to collaborate.
+                </h4>
+                <p className="font-[450] text-[0.875rem] text-[#6b7280] leading-[1.55] m-0">
+                  Have a project idea? I&apos;m open to freelance, internships, and full-time opportunities.
+                </p>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
 
       </div>
@@ -367,19 +282,19 @@ export default function Hero() {
               className="bg-white rounded-[20px] border border-[#e5e7eb] p-6 sm:p-8 max-w-md w-full relative space-y-6 shadow-2xl font-sans"
             >
               <div className="space-y-2">
-                <h3 className="font-extrabold text-[#0f0f1a] text-xl sm:text-2xl leading-tight">
-                  Download Portfolio Credentials
+                <h3 className="font-extrabold text-[#0f0f1a] text-xl sm:text-2xl leading-tight text-left">
+                  Download Credentials
                 </h3>
-                <p className="text-[#6b7280] text-xs sm:text-sm leading-relaxed">
+                <p className="text-[#6b7280] text-xs sm:text-sm leading-relaxed text-left">
                   You can retrieve Mantu&apos;s credentials as a PDF file or read details directly from the developer channels. Choose an option below:
                 </p>
               </div>
 
               <div className="space-y-3 pt-2">
                 <a
-                  href={`mailto:${personalInfo.email}?subject=Resume%20Request&body=Hi%20Mantu,%0A%0AI%20would%2520like%20to%20request%20your%20full%20developer%20resume%20for%20a%20project%20collaboration%20or%20job%20internship.%0A%0AThanks!`}
+                  href={`mailto:${personalInfo.email}?subject=Resume%20Request&body=Hi%20Mantu,%0A%0AI%2520would%252520like%2520to%2520request%2520your%2520full%2520developer%2520resume%2520for%2520a%2520project%2520collaboration.`}
                   onClick={() => setDownloadModal(false)}
-                  className="w-full text-center bg-[#2563eb] text-white py-3 rounded-lg font-bold text-sm block hover:bg-blue-700 transition-colors"
+                  className="w-full text-center bg-[#2563eb] text-white py-3 rounded-lg font-bold text-sm block hover:bg-blue-700 transition-colors cursor-pointer"
                 >
                   📨 Request Standard PDF via Mail
                 </a>
@@ -388,7 +303,7 @@ export default function Hero() {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noreferrer referrerPolicy"
-                  className="w-full text-center bg-slate-50 border border-slate-200 text-[#0f0f1a] py-3 rounded-lg font-bold text-sm block hover:bg-slate-100 transition-colors"
+                  className="w-full text-center bg-slate-50 border border-slate-200 text-[#0f0f1a] py-3 rounded-lg font-bold text-sm block hover:bg-slate-100 transition-colors cursor-pointer"
                 >
                   💻 Explore Direct GitHub Repos
                 </a>
@@ -398,7 +313,7 @@ export default function Hero() {
                 <button
                   type="button"
                   onClick={() => setDownloadModal(false)}
-                  className="text-xs font-bold text-[#6b7280] hover:text-[#0f0f1a] uppercase tracking-wider"
+                  className="text-xs font-bold text-[#6b7280] hover:text-[#0f0f1a] uppercase tracking-wider cursor-pointer"
                 >
                   Close Dialogue
                 </button>
@@ -411,12 +326,12 @@ export default function Hero() {
       {/* Floating Animations CSS injected */}
       <style>{`
         @keyframes floatUp {
-          from { transform: translateY(0px); }
-          to { transform: translateY(-8px); }
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-8px); }
         }
         @keyframes floatDown {
-          from { transform: translateY(-8px); }
-          to { transform: translateY(0px); }
+          0%, 100% { transform: translateY(-8px); }
+          50% { transform: translateY(0px); }
         }
       `}</style>
     </section>
