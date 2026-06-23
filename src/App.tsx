@@ -30,7 +30,7 @@ export default function App() {
 
         <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
-          <div className="flex-1 pt-[68px]">
+          <div className="flex-1 pt-[68px] pb-[80px] md:pb-0">
             <Routes>
               <Route path="/" element={<HomeRoute />} />
               <Route path="/about" element={<AboutRoute />} />

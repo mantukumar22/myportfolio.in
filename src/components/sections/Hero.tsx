@@ -29,7 +29,7 @@ export default function Hero() {
   ]
 
   return (
-    <section id="about" className="relative flex items-center bg-transparent font-sans border-b border-slate-900/10 overflow-hidden">
+    <section id="about" className="relative flex items-center bg-transparent font-sans border-b border-slate-900/10 overflow-hidden mb-12 md:mb-20">
 
 
       <div className="relative max-w-[1200px] mx-auto px-6 sm:px-[48px] py-[24px] md:py-[40px] w-full space-y-[40px] md:space-y-[48px] z-10">
