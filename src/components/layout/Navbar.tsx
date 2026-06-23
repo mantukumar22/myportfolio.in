@@ -4,99 +4,78 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { navLinks, personalInfo } from '@/data'
 import { ChevronDown, ArrowRight } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function Navbar() {
-  const [activeSection, setActiveSection] = useState('about')
+  const location = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showDropdown, setShowDropdown] = useState(false)
 
   // Filter links for matching the minimalist Deco.com nav links
-  const allowedLabels = ['About', 'Skills', 'Projects', 'Experience', 'Contact']
+  const allowedLabels = ['About', 'Skills', 'Projects', 'Contact']
   const filteredNavLinks = navLinks.filter(link => allowedLabels.includes(link.label))
 
+  // Map section labels to dedicated routing paths
+  const getRoutePath = (label: string): string => {
+    switch (label.toLowerCase()) {
+      case 'about':
+        return '/about'
+      case 'skills':
+        return '/skills'
+      case 'projects':
+        return '/projects'
+      case 'contact':
+        return '/contact'
+      default:
+        return '/'
+    }
+  }
+
   useEffect(() => {
-    // Scroll state tracker
     const handleScroll = () => {
       setScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
-
-    // IntersectionObserver section tracker
-    const sections = document.querySelectorAll('section[id]')
-    
-    const observerOptions = {
-      root: null,
-      rootMargin: '-80px 0px -50% 0px',
-      threshold: 0.1,
-    }
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveSection(entry.target.id)
-        }
-      })
-    }, observerOptions)
-
-    sections.forEach((section) => observer.observe(section))
-
     return () => {
       window.removeEventListener('scroll', handleScroll)
-      sections.forEach((section) => observer.unobserve(section))
     }
   }, [])
-
-  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault()
-    setMobileMenuOpen(false)
-    const targetId = href.replace('#', '')
-    const targetEl = document.getElementById(targetId)
-    if (targetEl) {
-      window.scrollTo({
-        top: targetEl.offsetTop - 68,
-        behavior: 'smooth',
-      })
-      setActiveSection(targetId)
-    }
-  }
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-[1000] w-full transition-all duration-300 font-sans ${
         scrolled
-          ? 'bg-[#070b19]/80 backdrop-blur-[12px] border-b border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.2)] text-white'
+          ? 'bg-[#070b19]/85 backdrop-blur-[12px] border-b border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.2)] text-white'
           : 'bg-transparent border-b border-transparent text-white'
       }`}
       style={{ height: '68px' }}
     >
       <div className="max-w-[1200px] h-full mx-auto px-6 sm:px-12 flex items-center justify-between">
         {/* LOGO (Plain bold text) */}
-        <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="flex items-center">
+        <Link to="/" className="flex items-center" onClick={() => setMobileMenuOpen(false)}>
           <span className="font-extrabold text-[1.35rem] tracking-[-0.02em] font-sans transition-colors duration-200 text-white">
             {personalInfo.initials}.
           </span>
-        </a>
+        </Link>
 
         {/* CENTER NAV LINKS (Desktop) */}
         <nav className="hidden md:flex items-center gap-[32px]">
           {filteredNavLinks.map((link) => {
-            const cleanHref = link.href
-            const cleanId = cleanHref.replace('#', '')
-            const isActive = activeSection === cleanId
+            const targetPath = getRoutePath(link.label)
+            const isActive = location.pathname === targetPath
             return (
-              <a
+              <Link
                 key={link.label}
-                href={cleanHref}
-                onClick={(e) => handleLinkClick(e, cleanHref)}
+                to={targetPath}
                 className={`text-[0.875rem] transition-colors duration-200 cursor-pointer text-decoration-none ${
                   isActive
-                    ? 'text-white font-semibold'
-                    : 'text-slate-405 hover:text-white font-medium'
+                    ? 'text-blue-400 font-bold border-b-2 border-blue-500 pb-1'
+                    : 'text-slate-300 hover:text-white font-medium'
                 }`}
               >
                 {link.label}
-              </a>
+              </Link>
             )
           })}
         </nav>
@@ -104,13 +83,12 @@ export default function Navbar() {
         {/* RIGHT BUTTONS (Exact Deco style) */}
         <div className="hidden md:flex items-center gap-[8px]">
           {/* Button 1: Get started */}
-          <a
-            href="#contact"
-            onClick={(e) => handleLinkClick(e, '#contact')}
+          <Link
+            to="/contact"
             className="font-semibold text-[0.875rem] px-[18px] py-[9px] rounded-[8px] border-none cursor-pointer transition-all duration-200 bg-[#2563eb] text-white hover:bg-[#1d4ed8] hover:scale-[1.02] active:scale-[0.98]"
           >
             Get started &rarr;
-          </a>
+          </Link>
 
           {/* Button 2: Download ↓ Dropdown */}
           <div className="relative">
@@ -184,37 +162,36 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-[68px] left-0 right-0 bg-slate-950/98 backdrop-blur-[12px] border-b border-slate-900 padding: px-[24px] py-[20px] pb-[28px] shadow-[0_8px_32px_rgba(0,0,0,0.3)] flex flex-col z-[999] md:hidden"
+            className="absolute top-[68px] left-0 right-0 bg-[#070b19] border-b border-slate-900 px-[24px] py-[20px] pb-[28px] shadow-[0_8px_32px_rgba(0,0,0,0.3)] flex flex-col z-[999] md:hidden"
           >
             <div className="flex flex-col">
               {filteredNavLinks.map((link) => {
-                const cleanHref = link.href
-                const cleanId = cleanHref.replace('#', '')
-                const isActive = activeSection === cleanId
+                const targetPath = getRoutePath(link.label)
+                const isActive = location.pathname === targetPath
                 return (
-                  <a
+                  <Link
                     key={link.label}
-                    href={cleanHref}
-                    onClick={(e) => handleLinkClick(e, cleanHref)}
+                    to={targetPath}
+                    onClick={() => setMobileMenuOpen(false)}
                     className={`py-[14px] border-b border-slate-900/50 text-[1rem] font-medium block text-left transition-colors ${
-                      isActive ? 'text-white font-semibold' : 'text-slate-300'
+                      isActive ? 'text-blue-400 font-bold' : 'text-slate-300 hover:text-white'
                     }`}
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 )
               })}
             </div>
 
             <div className="mt-[16px] flex flex-col gap-[8px] w-full">
               {/* Mobile primary CTA */}
-              <a
-                href="#contact"
-                onClick={(e) => handleLinkClick(e, '#contact')}
+              <Link
+                to="/contact"
+                onClick={() => setMobileMenuOpen(false)}
                 className="bg-[#2563eb] text-white text-center py-3 rounded-[8px] font-semibold text-[0.875rem] block w-full shadow-sm hover:bg-[#1d4ed8]"
               >
                 Get started &rarr;
-              </a>
+              </Link>
               {/* Mobile secondary CTA */}
               <a
                 href={`mailto:${personalInfo.email}?subject=Resume%20Request`}

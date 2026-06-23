@@ -8,24 +8,27 @@ export default function Features() {
   const cardsData = [
     {
       icon: '⚡',
-      iconBg: '#fef3c7',
+      iconBg: '#d97706',
       title: 'Fast Delivery',
       description: 'I ship production-ready code quickly without sacrificing quality, optimization, or core accessibility.',
       stack: 'Vite · ESBuild · SWC',
+      bgImage: 'https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?q=80&w=600&auto=format&fit=crop',
     },
     {
       icon: '💻',
-      iconBg: '#fce7f3',
+      iconBg: '#db2777',
       title: 'Clean Codebase',
       description: 'Every project follows clean server-client architectures, structured files, and pristine folder conventions.',
       stack: 'TS · ESLint · Prettier',
+      bgImage: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop',
     },
     {
       icon: '⭐',
-      iconBg: '#dbeafe',
+      iconBg: '#2563eb',
       title: 'Built with Care',
       description: 'From micro-interactions and smooth loaders to edge-case server queries — every pixel and query is intentional.',
       stack: 'Framer Motion · Tailwind',
+      bgImage: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop',
     },
   ]
 
@@ -54,6 +57,7 @@ export default function Features() {
               title={card.title}
               description={card.description}
               stack={card.stack}
+              bgImage={card.bgImage}
             />
           ))}
         </div>

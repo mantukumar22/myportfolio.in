@@ -141,13 +141,13 @@ export default function ProjectsRoute() {
                     {project.techStack.slice(0, 4).map((tech) => (
                       <span
                         key={tech}
-                        className="bg-blue-100 border border-blue-200 text-slate-850 text-[10px] px-2 py-0.5 rounded-[4px] font-semibold"
+                        className="bg-blue-100 border border-blue-200 text-black text-[10px] px-2 py-0.5 rounded-[4px] font-semibold"
                       >
                         {tech}
                       </span>
                     ))}
                     {project.techStack.length > 4 && (
-                      <span className="bg-blue-100 border border-blue-200 text-slate-850 text-[10px] px-2 py-0.5 rounded-[4px] font-semibold">
+                      <span className="bg-blue-100 border border-blue-200 text-black text-[10px] px-2 py-0.5 rounded-[4px] font-semibold">
                         +{project.techStack.length - 4}
                       </span>
                     )}

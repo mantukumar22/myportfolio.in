@@ -8,21 +8,37 @@ interface FeatureCardProps {
   title: string
   description: string
   stack: string
+  bgImage?: string
   id?: string
   key?: string | number
 }
 
-export default function FeatureCard({ icon, iconBg, title, description, stack, id }: FeatureCardProps) {
+export default function FeatureCard({ icon, iconBg, title, description, stack, bgImage, id }: FeatureCardProps) {
   return (
     <div
       id={id}
-      className="border-2 border-[#a5c3f7] rounded-[20px] p-8 bg-[#edf4fe] relative transition-all duration-300 hover:translate-y-[-6px] shadow-[0_6px_0_0_#020409] hover:shadow-[0_12px_0_0_#020409] group flex flex-col justify-between min-h-[220px]"
+      className="border-2 border-[#a5c3f7] rounded-[20px] p-8 bg-[#edf4fe] relative overflow-hidden transition-all duration-300 hover:translate-y-[-6px] shadow-[0_6px_0_0_#020409] hover:shadow-[0_12px_0_0_#020409] group flex flex-col justify-between min-h-[220px]"
     >
-      <div className="space-y-6">
+      {/* Blended Background Image */}
+      {bgImage && (
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-all duration-500 scale-100 group-hover:scale-105 pointer-events-none"
+          style={{ 
+            backgroundImage: `url(${bgImage})`,
+            opacity: 0.45,
+            mixBlendMode: 'multiply'
+          }}
+        />
+      )}
+      
+      {/* Visual content backdrop mesh to keep high contrast */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/5 pointer-events-none z-0" />
+
+      <div className="space-y-6 relative z-10">
         {/* Icon Box */}
         <div
-          className="w-12 h-12 rounded-[12px] flex items-center justify-center font-bold text-xl select-none border border-blue-200"
-          style={{ backgroundColor: iconBg + '22' }}
+          className="w-12 h-12 rounded-[12px] flex items-center justify-center font-bold text-xl select-none bg-white border border-blue-200 shadow-xs"
+          style={{ color: iconBg }}
         >
           {icon}
         </div>
@@ -32,7 +48,7 @@ export default function FeatureCard({ icon, iconBg, title, description, stack, i
           <h4 className="font-extrabold text-slate-900 text-lg leading-snug">
             {title}
           </h4>
-          <p className="text-slate-700 text-sm leading-relaxed">
+          <p className="text-slate-700 text-sm leading-relaxed font-normal">
             {description}
           </p>
         </div>

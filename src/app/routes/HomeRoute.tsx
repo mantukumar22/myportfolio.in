@@ -17,7 +17,7 @@ export default function HomeRoute() {
       description="Portfolio of Mantu Kumar, a certified Full Stack Web and Agentic AI Engineer specialized in high-performance cloud apps, chat interfaces, and real-time operations."
       keywords={['Mantu Kumar', 'Full-stack Engineer', 'Agentic AI Developer', 'Vite React Portfolio', 'Patna Technology Developer']}
     >
-      <div className="space-y-24">
+      <div className="space-y-16 md:space-y-20">
         {/* Hero Segment */}
         <Hero />
 

@@ -39,14 +39,14 @@ export default function TimelineItem({ item, index, id }: TimelineItemProps) {
             </h3>
             <p className="text-slate-800 font-semibold text-sm">{item.company}</p>
           </div>
-          <div className="text-xs text-blue-900/60 space-y-1.5 md:text-right font-medium">
+          <div className="text-xs text-black space-y-1.5 md:text-right font-semibold">
             <div className="flex items-center gap-1.5 md:justify-end">
-              <Calendar className="w-3.5 h-3.5 text-blue-900/50" />
-              <span>{item.period}</span>
+              <Calendar className="w-3.5 h-3.5 text-slate-900/80" />
+              <span className="text-black">{item.period}</span>
             </div>
             <div className="flex items-center gap-1.5 md:justify-end">
-              <MapPin className="w-3.5 h-3.5 text-blue-900/50" />
-              <span>{item.location}</span>
+              <MapPin className="w-3.5 h-3.5 text-slate-900/80" />
+              <span className="text-black">{item.location}</span>
             </div>
           </div>
         </div>
@@ -65,7 +65,7 @@ export default function TimelineItem({ item, index, id }: TimelineItemProps) {
           {item.skills.map((s, i) => (
             <span
               key={i}
-              className="bg-white border border-blue-200 text-slate-850 text-xs px-2.5 py-1 rounded-[6px] font-semibold"
+              className="bg-white border border-blue-200 text-black text-xs px-2.5 py-1 rounded-[6px] font-semibold"
             >
               {s}
             </span>

@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { personalInfo } from '@/data'
 import { Github, Linkedin, Instagram, ArrowRight, Star } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function Footer() {
   const [email, setEmail] = useState('')
@@ -17,17 +18,6 @@ export default function Footer() {
     setTimeout(() => {
       setSubscribed(false)
     }, 3000)
-  }
-
-  const handleScrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault()
-    const target = document.getElementById(id)
-    if (target) {
-      window.scrollTo({
-        top: target.offsetTop - 80,
-        behavior: 'smooth',
-      })
-    }
   }
 
   return (
@@ -53,9 +43,11 @@ export default function Footer() {
           
           {/* Column 1: Logo & Tagline (Desktop 4 cols) */}
           <div className="col-span-1 md:col-span-4 space-y-4">
-            <h3 className="font-extrabold text-white text-2xl tracking-tight">
-              {personalInfo.initials}.
-            </h3>
+            <Link to="/" className="inline-block">
+              <h3 className="font-extrabold text-white text-2xl tracking-tight">
+                {personalInfo.initials}.
+              </h3>
+            </Link>
             <p className="text-slate-300 text-sm leading-relaxed max-w-xs pr-4 font-normal">
               {personalInfo.tagline}
             </p>
@@ -72,26 +64,26 @@ export default function Footer() {
             <h4 className="text-white font-bold text-xs uppercase tracking-widest">
               Quick Links
             </h4>
-            <ul className="space-y-2 text-sm text-slate-300 font-medium">
+            <ul className="space-y-2 text-sm text-slate-300 font-medium list-none pl-0">
               <li>
-                <a href="#about" onClick={(e) => handleScrollToSection(e, 'about')} className="hover:text-white transition-colors">
+                <Link to="/about" className="hover:text-white transition-colors">
                   About Me
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#skills" onClick={(e) => handleScrollToSection(e, 'skills')} className="hover:text-white transition-colors">
+                <Link to="/skills" className="hover:text-white transition-colors">
                   Skills Arsenal
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#projects" onClick={(e) => handleScrollToSection(e, 'projects')} className="hover:text-white transition-colors">
+                <Link to="/projects" className="hover:text-white transition-colors">
                   Projects Grid
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#experience" onClick={(e) => handleScrollToSection(e, 'experience')} className="hover:text-white transition-colors">
-                  Experience Block
-                </a>
+                <Link to="/contact" className="hover:text-white transition-colors">
+                  Contact Form
+                </Link>
               </li>
             </ul>
           </div>

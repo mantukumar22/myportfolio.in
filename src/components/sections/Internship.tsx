@@ -25,8 +25,14 @@ export default function Internship() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           
           {/* Main Intern Info Left Column */}
-          <div className="lg:col-span-7 bg-[#edf4fe] border-2 border-[#a5c3f7] rounded-[20px] p-6 sm:p-10 flex flex-col justify-between space-y-6 shadow-[0_6px_0_0_#020409] hover:translate-y-[-4px] hover:shadow-[0_10px_0_0_#020409] transition-all duration-300">
-            <div className="space-y-6">
+          <div className="relative overflow-hidden lg:col-span-7 bg-[#edf4fe] border-2 border-[#a5c3f7] rounded-[20px] p-6 sm:p-10 flex flex-col justify-between space-y-6 shadow-[0_6px_0_0_#020409] hover:translate-y-[-4px] hover:shadow-[0_10px_0_0_#020409] transition-all duration-300">
+            <img 
+              src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1200"
+              alt="MERN Stack Development background"
+              className="absolute inset-0 w-full h-full object-cover block opacity-[0.18] pointer-events-none select-none z-0 pb-0 mb-0 border-0"
+              referrerPolicy="no-referrer"
+            />
+            <div className="relative z-10 space-y-6">
               <div className="flex items-start gap-4">
                 <div className="w-14 h-14 rounded-[12px] bg-blue-100 border border-blue-200 text-blue-700 flex items-center justify-center font-extrabold text-xl uppercase shrink-0 select-none shadow-sm">
                   {internshipData.companyInitials}
@@ -54,11 +60,11 @@ export default function Internship() {
             </div>
 
             {/* skills tag group */}
-            <div className="flex flex-wrap gap-1.5 pt-4 border-t border-blue-200">
+            <div className="relative z-10 flex flex-wrap gap-1.5 pt-4 border-t border-blue-200">
               {internshipData.skills.map((s) => (
                 <span
                   key={s}
-                  className="bg-white border border-blue-200 text-slate-800 text-xs px-3 py-1 rounded-[6px] font-semibold shadow-xs"
+                  className="bg-white border border-blue-200 text-black text-xs px-3 py-1 rounded-[6px] font-semibold shadow-xs"
                 >
                   {s}
                 </span>
@@ -69,6 +75,12 @@ export default function Internship() {
           {/* Deployed Capstones Right Column (using Deco styled gradient matching banner colors) */}
           <div className="lg:col-span-5 bg-[#edf4fe] border-2 border-[#a5c3f7] text-slate-900 rounded-[20px] p-6 sm:p-10 flex flex-col justify-between space-y-8 relative overflow-hidden shadow-[0_6px_0_0_#020409] hover:translate-y-[-4px] hover:shadow-[0_10px_0_0_#020409] transition-all duration-300">
             <div className="absolute top-0 right-0 w-44 h-44 bg-blue-200/30 rounded-full mix-blend-multiply blur-2xl opacity-40"></div>
+            <img 
+              src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000"
+              alt="Capstone deliverables background"
+              className="absolute inset-0 w-full h-full object-cover block opacity-[0.18] pointer-events-none select-none z-0 pb-0 mb-0 border-0"
+              referrerPolicy="no-referrer"
+            />
             
             <div className="relative z-10 space-y-4">
               <div className="p-2.5 w-fit rounded-[10px] bg-blue-100 ring-4 ring-blue-50 border border-blue-250">
@@ -109,46 +121,60 @@ export default function Internship() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {internshipData.hackathons.map((h) => (
-              <div
-                key={h.id}
-                className="bg-[#edf4fe] border-2 border-[#a5c3f7] rounded-[20px] p-6 flex flex-col justify-between space-y-6 shadow-[0_6px_0_0_#020409] hover:translate-y-[-4px] hover:shadow-[0_10px_0_0_#020409] transition-all duration-300 text-slate-900"
-              >
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center bg-[#f0f6ff] border border-blue-250 p-2 rounded-[10px]">
-                    <span className="text-slate-600 font-bold uppercase tracking-wider text-[9px] font-mono">
-                      {h.duration}
-                    </span>
-                    <span className="flex items-center gap-1 text-[10px] font-bold text-blue-700 bg-blue-100 border border-blue-200 px-2.5 py-0.5 rounded-md uppercase font-mono shadow-xs">
-                      <Award className="w-3.5 h-3.5" />
-                      {h.badge}
-                    </span>
+            {internshipData.hackathons.map((h) => {
+              const hackathonBgs: Record<string, string> = {
+                'gdg-patna': 'https://images.unsplash.com/photo-1540747737956-37872404f80f?q=80&w=600',
+                'gdg-ranchi': 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=600',
+                'promptnexus': 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=600',
+              };
+              const bgImg = hackathonBgs[h.id] || 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=600';
+              return (
+                <div
+                  key={h.id}
+                  className="relative overflow-hidden bg-[#edf4fe] border-2 border-[#a5c3f7] rounded-[20px] p-6 flex flex-col justify-between space-y-6 shadow-[0_6px_0_0_#020409] hover:translate-y-[-4px] hover:shadow-[0_10px_0_0_#020409] transition-all duration-300 text-slate-900"
+                >
+                  <img 
+                    src={bgImg}
+                    alt={h.event}
+                    className="absolute inset-0 w-full h-full object-cover block opacity-[0.18] pointer-events-none select-none z-0 pb-0 mb-0 border-0"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="relative z-10 space-y-4">
+                    <div className="flex justify-between items-center bg-[#f0f6ff] border border-blue-250 p-2 rounded-[10px]">
+                      <span className="text-slate-600 font-bold uppercase tracking-wider text-[9px] font-mono">
+                        {h.duration}
+                      </span>
+                      <span className="flex items-center gap-1 text-[10px] font-bold text-blue-700 bg-blue-100 border border-blue-200 px-2.5 py-0.5 rounded-md uppercase font-mono shadow-xs">
+                        <Award className="w-3.5 h-3.5" />
+                        {h.badge}
+                      </span>
+                    </div>
+
+                    <h4 className="font-extrabold text-slate-900 text-base sm:text-lg leading-tight">
+                      {h.event}
+                    </h4>
+                    <p className="text-xs font-bold text-blue-600 font-mono tracking-wide mt-1 uppercase">{h.organizer}</p>
+                    <p className="text-xs text-slate-700 leading-relaxed font-normal">
+                      {h.description}
+                    </p>
                   </div>
 
-                  <h4 className="font-extrabold text-slate-900 text-base sm:text-lg leading-tight">
-                    {h.event}
-                  </h4>
-                  <p className="text-xs font-bold text-blue-600 font-mono tracking-wide mt-1 uppercase">{h.organizer}</p>
-                  <p className="text-xs text-slate-700 leading-relaxed font-normal">
-                    {h.description}
-                  </p>
+                  <div className="relative z-10 flex justify-end pt-3 border-t border-blue-200 text-xs text-slate-900">
+                    {h.github && (
+                      <a
+                        href={h.github}
+                        target="_blank"
+                        rel="noreferrer referrerPolicy"
+                        className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 hover:underline transition-all"
+                      >
+                        <span>View Code</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-
-                <div className="flex justify-end pt-3 border-t border-blue-200 text-xs text-slate-900">
-                  {h.github && (
-                    <a
-                      href={h.github}
-                      target="_blank"
-                      rel="noreferrer referrerPolicy"
-                      className="text-xs font-bold text-blue-600 hover:text-blue-700 flex items-center gap-1 hover:underline transition-all"
-                    >
-                      <span>View Code</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

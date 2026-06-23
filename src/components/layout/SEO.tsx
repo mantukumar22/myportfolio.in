@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useEffect } from 'react'
-import { SEOMetadata, updateMetaTags } from '@/src/lib/seo'
+import { SEOMetadata, updateMetaTags } from '@/lib/seo'
 
 interface SEOProps extends SEOMetadata {
   children?: React.ReactNode

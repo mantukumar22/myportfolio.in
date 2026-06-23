@@ -1,10 +1,11 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { personalInfo } from '@/data'
 import SectionLabel from '@/components/ui/SectionLabel'
 import Button from '@/components/ui/Button'
-import { Mail, MapPin, Github, Linkedin, Send, MessageSquare, Check, X } from 'lucide-react'
+import { Mail, MapPin, Github, Linkedin, Send, MessageSquare, Check, X, AlertCircle } from 'lucide-react'
+import emailjs from '@emailjs/browser'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -15,26 +16,109 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [lastSubmittedTime, setLastSubmittedTime] = useState<number | null>(null)
+  const formRef = useRef<HTMLFormElement>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  const validateForm = (): string | null => {
+    if (!formData.name.trim()) return 'Name field is required'
+    if (formData.name.length < 2) return 'Name must be at least 2 characters long'
+    
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) return 'Please supply a structurally valid email address'
+    
+    if (!formData.subject.trim()) return 'Subject line requested'
+    if (formData.subject.length < 4) return 'Subject must be at least 4 characters long'
+    
+    if (!formData.message.trim()) return 'Message text cannot be vacant'
+    if (formData.message.length < 10) return 'Message body must exceed 10 characters for clarity'
+
+    return null
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Client-side validation checks
+    const validationError = validateForm()
+    if (validationError) {
+      setSubmitStatus('error')
+      setErrorMessage(validationError)
+      return
+    }
+
+    // Spam prevention dynamic rate limit checkpoint (e.g. 1 min wait)
+    const now = Date.now()
+    if (lastSubmittedTime && now - lastSubmittedTime < 60000) {
+      const waitSeconds = Math.round((60000 - (now - lastSubmittedTime)) / 1000)
+      setSubmitStatus('error')
+      setErrorMessage(`Tactical Spam Prevention: Please wait ${waitSeconds} seconds before submitting again.`)
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus('idle')
+    setErrorMessage('')
 
-    // Simulate direct secure compile and submit success
-    setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitStatus('success')
-    }, 1200)
+    // Read configured parameters
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+
+    if (serviceId && templateId && publicKey) {
+      // Direct integration with EmailJS servers
+      emailjs
+        .send(
+          serviceId,
+          templateId,
+          {
+            from_name: formData.name,
+            from_email: formData.email,
+            subject: formData.subject,
+            message: formData.message,
+            reply_to: formData.email,
+          },
+          publicKey
+        )
+        .then(
+          (result) => {
+            console.log('EmailJS transfer succeeded:', result.text)
+            setIsSubmitting(false)
+            setSubmitStatus('success')
+            setLastSubmittedTime(Date.now())
+          },
+          (error) => {
+            console.error('EmailJS transmission failed:', error)
+            setIsSubmitting(false)
+            setSubmitStatus('error')
+            setErrorMessage(error?.text || 'EmailJS rejected connection. Verify template configurations.')
+          }
+        )
+    } else {
+      // Fallback secure simulator is triggered
+      console.log('--- EMAILJS SIMULATOR ENGAGED ---')
+      console.log('Configured keys absent from environment, conducting local simulation:')
+      console.log('Name:', formData.name)
+      console.log('Email:', formData.email)
+      console.log('Subject:', formData.subject)
+      console.log('Message:', formData.message)
+      
+      setTimeout(() => {
+        setIsSubmitting(false)
+        setSubmitStatus('success')
+        setLastSubmittedTime(Date.now())
+      }, 1500)
+    }
   }
 
   const handleReset = () => {
     setSubmitStatus('idle')
+    setErrorMessage('')
     setFormData({
       name: '',
       email: '',
@@ -42,6 +126,7 @@ export default function Contact() {
       message: '',
     })
   }
+
 
   return (
     <section id="contact" className="py-24 sm:py-32 bg-transparent font-sans border-b border-slate-900/10">
@@ -134,8 +219,15 @@ export default function Contact() {
 
           {/* Form write fields card right side column */}
           <div className="lg:col-span-7 bg-[#edf4fe] border-2 border-[#a5c3f7] rounded-[20px] p-6 sm:p-10 shadow-[0_6px_0_0_#020409] hover:translate-y-[-4px] hover:shadow-[0_10px_0_0_#020409] transition-all duration-300 relative overflow-hidden flex flex-col justify-center min-h-[440px] text-slate-900">
-            {submitStatus === 'idle' && (
+            {submitStatus !== 'success' && (
               <form onSubmit={handleSubmit} className="space-y-6">
+                {submitStatus === 'error' && errorMessage && (
+                  <div className="bg-rose-50 border border-rose-200 rounded-lg p-3 text-xs text-rose-800 font-semibold flex items-start gap-2 animate-pulse">
+                    <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
                     <label htmlFor="name" className="text-[10px] font-bold text-slate-600 uppercase tracking-wider font-mono">

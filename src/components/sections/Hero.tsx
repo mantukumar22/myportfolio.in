@@ -29,15 +29,73 @@ export default function Hero() {
   ]
 
   return (
-    <section id="about" className="relative pt-[68px] min-h-screen flex items-center bg-transparent font-sans border-b border-slate-900/10 overflow-hidden">
+    <section id="about" className="relative flex items-center bg-transparent font-sans border-b border-slate-900/10 overflow-hidden">
 
 
-      <div className="relative max-w-[1200px] mx-auto px-6 sm:px-[48px] py-[40px] md:py-[80px] w-full space-y-[64px] md:space-y-[80px] z-10">
+      <div className="relative max-w-[1200px] mx-auto px-6 sm:px-[48px] py-[24px] md:py-[40px] w-full space-y-[40px] md:space-y-[48px] z-10">
         
-        {/* HERO HEADER GRID — EXACT DECO 55% / 45% COLUMNS */}
-        <div className="grid grid-cols-1 lg:grid-cols-[55fr_45fr] gap-[40px] md:gap-[64px] items-center">
+        {/* HERO HEADER GRID — EXACT DECO 45% / 55% COLUMNS (PROFILE CARD SHIFTED TO 1ST) */}
+        <div className="grid grid-cols-1 lg:grid-cols-[45fr_55fr] gap-[40px] md:gap-[48px] items-center">
           
-          {/* LEFT COLUMN (55%) */}
+          {/* PROFILE CARD COLUMN — SHIFTED TO COL 1 */}
+          <div className="relative w-full flex justify-center lg:justify-start">
+            {/* ILLUSTRATION CARD CANVAS WITH OVERFLOW FLUID FLOATING CARDS */}
+            <div className="relative w-full max-w-[280px] sm:max-w-[310px] md:max-w-[335px] select-none group">
+              
+              {/* STATIC DECO ABSTRACT CIRCLES BEHIND CARD */}
+              {/* Circle 1 */}
+              <div className="absolute -top-[50px] -right-[50px] w-[200px] h-[200px] border-[1.5px] border-indigo-500/15 rounded-full select-none pointer-events-none z-0"></div>
+              {/* Circle 2 */}
+              <div className="absolute -bottom-[40px] -left-[40px] w-[160px] h-[160px] bg-indigo-500/10 rounded-full select-none pointer-events-none z-0 blur-2xl"></div>
+
+              {/* Outer image showcasing the full PNG card */}
+              <div className="relative w-full z-10 transition-transform duration-500 group-hover:scale-[1.015]">
+                {/* Photo inside displaying full height automatically */}
+                <img
+                  src={mantuProfileCard}
+                  alt="Mantu Kumar ID Card"
+                  className="w-full h-auto object-contain rounded-[24px] block"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+
+              {/* FLOATING CARD 1 */}
+              <div
+                className="absolute z-20 flex items-center gap-[10px] sm:gap-[12px] min-w-[175px] sm:min-w-[210px] bg-slate-900/90 backdrop-blur-[12px] border border-slate-800/80 rounded-[14px] p-[10px] pr-[14px] sm:p-[14px] sm:pr-[18px] shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 top-[45%] left-[-12px] sm:left-[-20px] -translate-y-1/2 scale-[0.85] sm:scale-[0.95] md:top-auto md:bottom-[8px] md:left-[12px] md:translate-y-0 md:scale-100 md:origin-left"
+                style={{
+                  animation: 'floatUp 4s ease-in-out infinite'
+                }}
+              >
+                <div className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] bg-[#dbeafe]/10 rounded-[9px] flex items-center justify-center shrink-0">
+                  <Code className="w-[18px] h-[18px] text-blue-400" />
+                </div>
+                <div className="text-left font-sans">
+                  <p className="font-[700] text-white text-[11px] sm:text-[0.875rem] leading-[1.2]">Quickly code</p>
+                  <p className="text-[9px] sm:text-[0.75rem] text-slate-400 mt-[2px] leading-[1.3] font-medium">Writing scalable architecture</p>
+                </div>
+              </div>
+
+              {/* FLOATING CARD 2 */}
+              <div
+                className="absolute z-20 flex items-center gap-[10px] sm:gap-[12px] min-w-[175px] sm:min-w-[200px] bg-slate-900/90 backdrop-blur-[12px] border border-slate-800/80 rounded-[14px] p-[10px] pr-[14px] sm:p-[14px] sm:pr-[18px] shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 bottom-[30px] right-[-12px] sm:right-[-20px] scale-[0.85] sm:scale-[0.95] md:bottom-auto md:top-[140px] md:right-[-86px] lg:right-[-110px] xl:right-[-124px] md:left-auto md:scale-100 md:origin-right"
+                style={{
+                  animation: 'floatDown 4s ease-in-out infinite',
+                  animationDelay: '1.5s'
+                }}
+              >
+                <div className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] bg-[#dcfce7]/10 rounded-[9px] flex items-center justify-center shrink-0">
+                  <Brain className="w-[18px] h-[18px] text-emerald-400" />
+                </div>
+                <div className="text-left font-sans">
+                  <p className="font-[700] text-white text-[11px] sm:text-[0.875rem] leading-[1.2]">AI Powered</p>
+                  <p className="text-[9px] sm:text-[0.75rem] text-slate-400 mt-[2px] leading-[1.3] font-medium">Built with Gemini &amp; Agent</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* TEXT CONTENT COLUMN — SHIFTED TO COL 2 */}
           <div className="space-y-[20px] md:space-y-[24px]">
             {/* EXACT DECO HEADLINE WITH BLUE BOX */}
             <h1 className="font-sans font-[800] text-[clamp(2.2rem,8vw,3rem)] md:text-[clamp(2.6rem,4.5vw,4.2rem)] lg:text-[clamp(2.6rem,4.5vw,4.2rem)] text-white leading-[1.08] tracking-[-0.03em] m-0 text-left animate-fade-in-up">
@@ -91,64 +149,6 @@ export default function Hero() {
               </a>
             </div>
           </div>
-
-          {/* RIGHT COLUMN (45%) WITH LARGE PHOTO ID CARD */}
-          <div className="relative w-full flex justify-center lg:justify-end">
-            {/* ILLUSTRATION CARD CANVAS WITH OVERFLOW FLUID FLOATING CARDS */}
-            <div className="relative w-full max-w-[280px] sm:max-w-[310px] md:max-w-[335px] select-none group">
-              
-              {/* STATIC DECO ABSTRACT CIRCLES BEHIND CARD */}
-              {/* Circle 1 */}
-              <div className="absolute -top-[50px] -right-[50px] w-[200px] h-[200px] border-[1.5px] border-indigo-500/15 rounded-full select-none pointer-events-none z-0"></div>
-              {/* Circle 2 */}
-              <div className="absolute -bottom-[40px] -left-[40px] w-[160px] h-[160px] bg-indigo-500/10 rounded-full select-none pointer-events-none z-0 blur-2xl"></div>
-
-              {/* Outer image showcasing the full PNG card */}
-              <div className="relative w-full z-10 transition-transform duration-500 group-hover:scale-[1.015]">
-                {/* Photo inside displaying full height automatically */}
-                <img
-                  src={mantuProfileCard}
-                  alt="Mantu Kumar ID Card"
-                  className="w-full h-auto object-contain rounded-[24px]"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-
-              {/* FLOATING CARD 1 */}
-              <div
-                className="absolute z-20 flex items-center gap-[10px] sm:gap-[12px] min-w-[175px] sm:min-w-[210px] bg-slate-900/90 backdrop-blur-[12px] border border-slate-800/80 rounded-[14px] p-[10px] pr-[14px] sm:p-[14px] sm:pr-[18px] shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 top-[45%] left-[-12px] sm:left-[-20px] -translate-y-1/2 scale-[0.85] sm:scale-[0.95] md:top-auto md:bottom-[8px] md:left-[12px] md:translate-y-0 md:scale-100 md:origin-left"
-                style={{
-                  animation: 'floatUp 4s ease-in-out infinite'
-                }}
-              >
-                <div className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] bg-[#dbeafe]/10 rounded-[9px] flex items-center justify-center shrink-0">
-                  <Code className="w-[18px] h-[18px] text-blue-400" />
-                </div>
-                <div className="text-left font-sans">
-                  <p className="font-[700] text-white text-[11px] sm:text-[0.875rem] leading-[1.2]">Quickly code</p>
-                  <p className="text-[9px] sm:text-[0.75rem] text-slate-400 mt-[2px] leading-[1.3] font-medium">Writing scalable architecture</p>
-                </div>
-              </div>
-
-              {/* FLOATING CARD 2 */}
-              <div
-                className="absolute z-20 flex items-center gap-[10px] sm:gap-[12px] min-w-[175px] sm:min-w-[200px] bg-slate-900/90 backdrop-blur-[12px] border border-slate-800/80 rounded-[14px] p-[10px] pr-[14px] sm:p-[14px] sm:pr-[18px] shadow-[0_12px_40px_rgba(0,0,0,0.4)] transition-all duration-300 bottom-[30px] right-[-12px] sm:right-[-20px] scale-[0.85] sm:scale-[0.95] md:bottom-auto md:top-[140px] md:right-[-86px] lg:right-[-110px] xl:right-[-124px] md:left-auto md:scale-100 md:origin-right"
-                style={{
-                  animation: 'floatDown 4s ease-in-out infinite',
-                  animationDelay: '1.5s'
-                }}
-              >
-                <div className="w-[32px] h-[32px] sm:w-[36px] sm:h-[36px] bg-[#dcfce7]/10 rounded-[9px] flex items-center justify-center shrink-0">
-                  <Brain className="w-[18px] h-[18px] text-emerald-400" />
-                </div>
-                <div className="text-left font-sans">
-                  <p className="font-[700] text-white text-[11px] sm:text-[0.875rem] leading-[1.2]">AI Powered</p>
-                  <p className="text-[9px] sm:text-[0.75rem] text-slate-400 mt-[2px] leading-[1.3] font-medium">Built with Gemini &amp; Agent</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
         </div>
 
         {/* BELOW HERO — EXACT DECO BOTTOM SECTION (feature card + numbered steps) */}
@@ -161,7 +161,7 @@ export default function Hero() {
               <img
                 src={githubScreenshot}
                 alt="Mantu Kumar Github Overview"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover block"
                 referrerPolicy="no-referrer"
               />
               {/* Slate subtle backdrop overlay */}

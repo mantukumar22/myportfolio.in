@@ -39,7 +39,7 @@ export default function About() {
               <img
                 src={coderlook}
                 alt="Mantu Kumar Coder Look"
-                className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-105 block"
                 referrerPolicy="no-referrer"
               />
               

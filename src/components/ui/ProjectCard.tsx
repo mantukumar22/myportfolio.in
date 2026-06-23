@@ -14,6 +14,19 @@ interface ProjectCardProps {
 export default function ProjectCard({ project, index = 0, id }: ProjectCardProps) {
   const formattedIndex = index < 9 ? `0${index + 1}` : `${index + 1}`
 
+  const projectImages: Record<string, string> = {
+    fanpulse: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=600',
+    'ipl-akinator': 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600',
+    quickbite: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600',
+    zerodha: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=600',
+    apnazoomcall: 'https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?q=80&w=600',
+    carbonmate: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600',
+    todo: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?q=80&w=600',
+    laundrypro: 'https://images.unsplash.com/photo-1545173168-9f1947e8017e?q=80&w=600'
+  }
+
+  const bgImage = projectImages[project.id] || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600'
+
   return (
     <div
       id={id}
@@ -24,7 +37,16 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
         className="h-[220px] p-6 relative flex flex-col justify-between overflow-hidden"
         style={{ background: project.gradient }}
       >
-        <div className="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
+        {/* Blended Background Image inside custom Banner */}
+        <div
+          className="absolute inset-0 bg-cover bg-center transition-all duration-500 scale-100 group-hover:scale-105 pointer-events-none"
+          style={{ 
+            backgroundImage: `url(${bgImage})`,
+            opacity: 0.35,
+            mixBlendMode: 'multiply'
+          }}
+        />
+        <div className="absolute inset-0 bg-black/10 mix-blend-overlay z-0"></div>
         
         {/* Association & Category pill */}
         <div className="flex justify-between items-start z-10">
@@ -110,8 +132,21 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
       </div>
 
       {/* BODY (28px padding) */}
-      <div className="p-7 flex-1 flex flex-col justify-between space-y-5">
-        <div className="space-y-4">
+      <div className="p-7 flex-1 flex flex-col justify-between space-y-5 relative overflow-hidden">
+        {/* Blended Background Image inside custom Body */}
+        <div
+          className="absolute inset-0 bg-cover bg-center pointer-events-none z-0"
+          style={{ 
+            backgroundImage: `url(${bgImage})`,
+            opacity: 0.35,
+            mixBlendMode: 'multiply'
+          }}
+        />
+        
+        {/* Visual mesh overlay to preserve contrast */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-black/5 pointer-events-none z-0" />
+
+        <div className="space-y-4 relative z-10">
           <div className="flex items-center gap-2 text-blue-900/60 text-xs font-mono font-bold">
             <Calendar className="w-3.5 h-3.5 text-blue-900/50" />
             <span>{project.duration}</span>
@@ -141,7 +176,7 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
           </div>
         </div>
 
-        <div className="space-y-4 pt-4 border-t border-blue-200">
+        <div className="space-y-4 pt-4 border-t border-blue-200 relative z-10">
           {/* Tech tags flex-wrap. We light them up on hover! */}
           <div className="flex flex-wrap gap-1.5">
             {project.techStack.map((tech) => (
