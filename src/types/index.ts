@@ -50,6 +50,12 @@ export interface Project {
   liveDemo?: string
   github?: string
   featured: boolean
+  slug: string
+  thumbnail: string
+  screenshots: string[]
+  seoDescription: string
+  githubUrl?: string
+  liveUrl?: string
 }
 
 export interface ExperienceEntry {

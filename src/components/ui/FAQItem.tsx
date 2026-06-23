@@ -18,25 +18,25 @@ export default function FAQItem({ number, question, answer, isOpenDefault = fals
   return (
     <div
       onClick={() => setIsOpen(!isOpen)}
-      className={`border-t border-[#f3f4f6] py-5 px-4 cursor-pointer transition-all duration-350 select-none group rounded-[12px] ${
-        !isOpen ? 'hover:bg-[#f8faff] hover:border-l-[4px] hover:border-l-[#2563eb] hover:pl-3 pl-4' : 'bg-slate-50/50'
+      className={`border-t border-blue-200 py-5 px-4 cursor-pointer transition-all duration-350 select-none group rounded-[12px] ${
+        !isOpen ? 'hover:bg-blue-100/70 hover:border-l-[4px] hover:border-l-[#2563eb] hover:pl-3 pl-4' : 'bg-white border-l-[4px] border-l-[#2563eb] pl-3 shadow-xs'
       }`}
     >
       {/* Header Row */}
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <span className="text-[#2563eb] font-extrabold text-[#0.875rem] font-mono shrink-0">
+          <span className="text-blue-600 font-extrabold text-[0.875rem] font-mono shrink-0 animate-pulse">
             {number}
           </span>
-          <h4 className="font-bold text-[#0f0f1a] text-sm sm:text-base leading-snug transition-colors group-hover:text-[#2563eb]">
+          <h4 className="font-bold text-slate-900 text-sm sm:text-base leading-snug transition-colors group-hover:text-blue-600">
             {question}
           </h4>
         </div>
 
         {/* Rotate arrow */}
         <ChevronDown
-          className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ${
-            isOpen ? 'rotate-180 text-[#2563eb]' : ''
+          className={`w-4 h-4 text-slate-650 shrink-0 transition-transform duration-300 ${
+            isOpen ? 'rotate-180 text-blue-600' : ''
           }`}
         />
       </div>
@@ -51,7 +51,7 @@ export default function FAQItem({ number, question, answer, isOpenDefault = fals
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <p className="text-[#6b7280] text-[0.95rem] leading-relaxed pt-3 pl-9 pr-2 font-normal">
+            <p className="text-slate-800 text-[0.95rem] leading-relaxed pt-3 pl-9 pr-2 font-normal">
               {answer}
             </p>
           </motion.div>

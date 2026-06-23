@@ -29,6 +29,15 @@ export const projects: Project[] = [
     liveDemo: 'https://github.com/mantukumar22/Cricpulse',
     github: 'https://github.com/mantukumar22/Cricpulse',
     featured: true,
+    slug: 'fanpulse-ai-cricket',
+    thumbnail: '/images/projects/fanpulse-thumb.jpg',
+    screenshots: [
+      '/images/projects/fanpulse-screenshot-1.jpg',
+      '/images/projects/fanpulse-screenshot-2.jpg'
+    ],
+    seoDescription: 'Transform cricket fan engagement with FanPulse AI. Built with Google Gemini, predictive model engines, and real-time live match integrations.',
+    githubUrl: 'https://github.com/mantukumar22/Cricpulse',
+    liveUrl: 'https://github.com/mantukumar22/Cricpulse'
   },
   {
     id: 'ipl-akinator',
@@ -55,6 +64,15 @@ export const projects: Project[] = [
     gradient: 'linear-gradient(135deg, #6a11cb, #2575fc)',
     github: 'https://github.com/Abhiyadav012/ipl_Akinator',
     featured: false,
+    slug: 'ipl-akinator-player-guesser',
+    thumbnail: '/images/projects/ipl-akinator-thumb.jpg',
+    screenshots: [
+      '/images/projects/ipl-akinator-screenshot-1.jpg',
+      '/images/projects/ipl-akinator-screenshot-2.jpg'
+    ],
+    seoDescription: 'An interactive IPL Player guesser game powered by Gemini AI and standard confidence threshold calculations. An original GDG Ranchi hackathon awardee.',
+    githubUrl: 'https://github.com/Abhiyadav012/ipl_Akinator',
+    liveUrl: 'https://github.com/Abhiyadav012/ipl_Akinator'
   },
   {
     id: 'quickbite',
@@ -83,6 +101,15 @@ export const projects: Project[] = [
     gradient: 'linear-gradient(135deg, #f7971e, #ffd200)',
     github: 'https://github.com/mantukumar22/QuickBite',
     featured: false,
+    slug: 'quickbite-food-ordering',
+    thumbnail: '/images/projects/quickbite-thumb.jpg',
+    screenshots: [
+      '/images/projects/quickbite-screenshot-1.jpg',
+      '/images/projects/quickbite-screenshot-2.jpg'
+    ],
+    seoDescription: 'An industry-grade AI food ordering and menu selection prototype. Winner of Techphilia 9.0 hackathon, styled with Next.js and Tailwind.',
+    githubUrl: 'https://github.com/mantukumar22/QuickBite',
+    liveUrl: 'https://github.com/mantukumar22/QuickBite'
   },
   {
     id: 'zerodha',
@@ -115,6 +142,15 @@ export const projects: Project[] = [
     liveDemo: 'https://zerodha-clone-9y5j.onrender.com',
     github: 'https://github.com/mantukumar22',
     featured: true,
+    slug: 'zerodha-kite-trading-clone',
+    thumbnail: '/images/projects/zerodha-thumb.jpg',
+    screenshots: [
+      '/images/projects/zerodha-screenshot-1.jpg',
+      '/images/projects/zerodha-screenshot-2.jpg'
+    ],
+    seoDescription: 'A comprehensive clone of India\'s largest stockbroker trading desk using the MERN stack. Designed with ChartJS, real order booking streams, and JWT auth.',
+    githubUrl: 'https://github.com/mantukumar22',
+    liveUrl: 'https://zerodha-clone-9y5j.onrender.com'
   },
   {
     id: 'apnazoomcall',
@@ -147,6 +183,15 @@ export const projects: Project[] = [
     liveDemo: 'https://apnazoomcall-frontend.onrender.com',
     github: 'https://github.com/mantukumar22/ApnazoomCall.git',
     featured: true,
+    slug: 'apnazoomcall-realtime-web-meetings',
+    thumbnail: '/images/projects/apnazoomcall-thumb.jpg',
+    screenshots: [
+      '/images/projects/apnazoomcall-screenshot-1.jpg',
+      '/images/projects/apnazoomcall-screenshot-2.jpg'
+    ],
+    seoDescription: 'High performance student-teacher meeting workspace with stable WebRTC, Socket.IO channels, screensharing, state indicators, and REST routes.',
+    githubUrl: 'https://github.com/mantukumar22/ApnazoomCall.git',
+    liveUrl: 'https://apnazoomcall-frontend.onrender.com'
   },
   {
     id: 'carbonmate',
@@ -180,6 +225,15 @@ export const projects: Project[] = [
     liveDemo: 'https://lnkd.in/ehUQYhDx',
     github: 'https://lnkd.in/e7SJZ7s4',
     featured: true,
+    slug: 'carbonmate-ai-carbon-tracker',
+    thumbnail: '/images/projects/carbonmate-thumb.jpg',
+    screenshots: [
+      '/images/projects/carbonmate-screenshot-1.jpg',
+      '/images/projects/carbonmate-screenshot-2.jpg'
+    ],
+    seoDescription: 'Compute your daily greenhouse emissions using NLP analysis. Powered by Google Gemini API, Firebase Firestore, and responsive Framer Motion interfaces.',
+    githubUrl: 'https://lnkd.in/e7SJZ7s4',
+    liveUrl: 'https://lnkd.in/ehUQYhDx'
   },
   {
     id: 'todo',
@@ -210,6 +264,15 @@ export const projects: Project[] = [
     liveDemo: 'https://todoapplicationamrit.netlify.app',
     github: 'https://github.com/mantukumar22/todo-frontend.git',
     featured: false,
+    slug: 'full-stack-todo-manager',
+    thumbnail: '/images/projects/todo-thumb.jpg',
+    screenshots: [
+      '/images/projects/todo-screenshot-1.jpg',
+      '/images/projects/todo-screenshot-2.jpg'
+    ],
+    seoDescription: 'Robust task execution planner with backend Node server integration, full CORS guards, secure MongoDB storage, and live query search state.',
+    githubUrl: 'https://github.com/mantukumar22/todo-frontend.git',
+    liveUrl: 'https://todoapplicationamrit.netlify.app'
   },
   {
     id: 'laundrypro',
@@ -236,6 +299,15 @@ export const projects: Project[] = [
     gradient: 'linear-gradient(135deg, #fc4a1a, #f7b733)',
     github: 'https://github.com/mantukumar22',
     featured: false,
+    slug: 'laundrypro-service-booking',
+    thumbnail: '/images/projects/laundrypro-thumb.jpg',
+    screenshots: [
+      '/images/projects/laundrypro-screenshot-1.jpg',
+      '/images/projects/laundrypro-screenshot-2.jpg'
+    ],
+    seoDescription: 'Polished client bookings portal that confirms orders and verifies customer emails instantly. Includes highly customizable schedule selections.',
+    githubUrl: 'https://github.com/mantukumar22',
+    liveUrl: 'https://github.com/mantukumar22'
   },
 ]
 

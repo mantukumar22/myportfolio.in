@@ -17,7 +17,7 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
   return (
     <div
       id={id}
-      className="bg-white border border-[#e5e7eb] rounded-[20px] overflow-hidden flex flex-col group hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)] hover:border-[#2563eb] transition-all duration-300 relative shadow-[0_1px_3px_rgba(0,0,0,0.06),0_1px_2px_rgba(0,0,0,0.04)]"
+      className="bg-[#edf4fe] border-2 border-[#a5c3f7] rounded-[20px] overflow-hidden flex flex-col group hover:translate-y-[-6px] hover:shadow-[0_12px_0_0_#020409] transition-all duration-300 relative shadow-[0_6px_0_0_#020409]"
     >
       {/* BANNER (220px) — gradient */}
       <div
@@ -28,7 +28,7 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
         
         {/* Association & Category pill */}
         <div className="flex justify-between items-start z-10">
-          <span className="bg-white/95 backdrop-blur-md text-[#0f0f1a] border border-[#e5e7eb] px-3 py-1 rounded-full text-xs font-bold shadow-xs flex items-center gap-1.5 transition-colors duration-300">
+          <span className="bg-[#070b19]/90 backdrop-blur-md text-white border border-slate-800 px-3 py-1 rounded-full text-xs font-bold shadow-xs flex items-center gap-1.5 transition-colors duration-300">
             <span>{project.associationIcon}</span>
             <span>{project.association}</span>
           </span>
@@ -57,9 +57,9 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
         </div>
 
         {/* QUICK INFO POPUP on card hover (covers banner) */}
-        <div className="absolute inset-0 bg-[#0f0f1a]/95 backdrop-blur-md text-white p-6 flex flex-col justify-between z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-[20px]">
+        <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-md text-white p-6 flex flex-col justify-between z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-[20px]">
           <div className="space-y-3">
-            <div className="flex items-center gap-1.5 text-xs text-[#2563eb] font-bold tracking-widest uppercase mb-1">
+            <div className="flex items-center gap-1.5 text-xs text-blue-400 font-bold tracking-widest uppercase mb-1">
               <Star className="w-3.5 h-3.5 fill-[#2563eb]" />
               <span>Project Details</span>
             </div>
@@ -112,28 +112,28 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
       {/* BODY (28px padding) */}
       <div className="p-7 flex-1 flex flex-col justify-between space-y-5">
         <div className="space-y-4">
-          <div className="flex items-center gap-2 text-slate-400 text-xs font-mono font-bold">
-            <Calendar className="w-3.5 h-3.5 text-slate-400" />
+          <div className="flex items-center gap-2 text-blue-900/60 text-xs font-mono font-bold">
+            <Calendar className="w-3.5 h-3.5 text-blue-900/50" />
             <span>{project.duration}</span>
           </div>
 
-          <h3 className="text-lg font-extrabold text-[#0f0f1a] leading-snug group-hover:text-[#2563eb] transition-colors duration-300">
+          <h3 className="text-lg font-extrabold text-slate-900 leading-snug group-hover:text-blue-600 transition-colors duration-300">
             {project.title}
           </h3>
 
-          <p className="text-[#6b7280] text-sm leading-relaxed line-clamp-3">
+          <p className="text-slate-700 text-sm leading-relaxed line-clamp-3">
             {project.description}
           </p>
 
-          <div className="h-[1px] bg-[#e5e7eb] w-full my-1"></div>
+          <div className="h-[1px] bg-blue-200/60 w-full my-1"></div>
 
           {/* Feature list (3 bullets ✦) */}
           <div className="space-y-1.5">
-            <span className="text-[10px] font-mono font-bold uppercase text-slate-400 tracking-wider">Key Highlights</span>
-            <ul className="text-slate-600 text-xs space-y-1 font-normal">
+            <span className="text-[10px] font-mono font-bold uppercase text-blue-900/60 tracking-wider">Key Highlights</span>
+            <ul className="text-slate-700 text-xs space-y-1 font-normal">
               {project.features.slice(0, 3).map((feat, fi) => (
                 <li key={fi} className="flex items-start gap-1.5 leading-relaxed">
-                  <span className="text-[#2563eb] font-bold">✦</span>
+                  <span className="text-blue-600 font-bold">✦</span>
                   <span className="line-clamp-2">{feat}</span>
                 </li>
               ))}
@@ -141,13 +141,13 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
           </div>
         </div>
 
-        <div className="space-y-4 pt-4 border-t border-[#f3f4f6]">
+        <div className="space-y-4 pt-4 border-t border-blue-200">
           {/* Tech tags flex-wrap. We light them up on hover! */}
           <div className="flex flex-wrap gap-1.5">
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="bg-slate-50 border border-[#e5e7eb] text-slate-600 text-xs px-2.5 py-0.5 rounded-[6px] font-medium transition-all duration-300 group-hover:bg-[#2563eb] group-hover:text-white group-hover:border-[#2563eb]"
+                className="bg-blue-100/80 border border-blue-200 text-slate-800 text-xs px-2.5 py-0.5 rounded-[6px] font-medium transition-all duration-300 group-hover:bg-[#2563eb] group-hover:text-white group-hover:border-[#2563eb]"
               >
                 {tech}
               </span>
@@ -156,14 +156,14 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
 
           {/* Links raw fallback buttons */}
           <div className="flex justify-between items-center text-xs pt-1">
-            <span className="text-slate-400 font-mono font-semibold">{formattedIndex}/08</span>
+            <span className="text-blue-900/50 font-mono font-semibold">{formattedIndex}/08</span>
             <div className="flex items-center gap-3">
               {project.liveDemo && (
                 <a
                   href={project.liveDemo}
                   target="_blank"
                   rel="noreferrer referrerPolicy"
-                  className="text-slate-500 hover:text-[#2563eb] font-bold flex items-center gap-1 group-hover:underline transition-all"
+                  className="text-blue-900/70 hover:text-blue-600 font-bold flex items-center gap-1 group-hover:underline transition-all"
                 >
                   <span>Demo</span>
                   <ExternalLink className="w-3 h-3" />
@@ -174,7 +174,7 @@ export default function ProjectCard({ project, index = 0, id }: ProjectCardProps
                   href={project.github}
                   target="_blank"
                   rel="noreferrer referrerPolicy"
-                  className="text-slate-500 hover:text-[#2563eb] font-bold flex items-center gap-1 group-hover:underline transition-all"
+                  className="text-blue-900/70 hover:text-blue-600 font-bold flex items-center gap-1 group-hover:underline transition-all"
                 >
                   <span>Code</span>
                   <Github className="w-3 h-3" />

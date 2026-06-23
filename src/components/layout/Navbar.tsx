@@ -63,17 +63,17 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[1000] w-full transition-shadow duration-300 font-sans ${
+      className={`fixed top-0 left-0 right-0 z-[1000] w-full transition-all duration-300 font-sans ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-[12px] border-b border-[#f3f4f6] shadow-[0_1px_20px_rgba(0,0,0,0.08)]'
-          : 'bg-white/95 backdrop-blur-[12px] border-b border-[#f3f4f6]'
+          ? 'bg-[#070b19]/80 backdrop-blur-[12px] border-b border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.2)] text-white'
+          : 'bg-transparent border-b border-transparent text-white'
       }`}
       style={{ height: '68px' }}
     >
       <div className="max-w-[1200px] h-full mx-auto px-6 sm:px-12 flex items-center justify-between">
         {/* LOGO (Plain bold text) */}
         <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="flex items-center">
-          <span className="font-extrabold text-[#0f0f1a] text-[1.35rem] tracking-[-0.02em] font-sans">
+          <span className="font-extrabold text-[1.35rem] tracking-[-0.02em] font-sans transition-colors duration-200 text-white">
             {personalInfo.initials}.
           </span>
         </a>
@@ -91,8 +91,8 @@ export default function Navbar() {
                 onClick={(e) => handleLinkClick(e, cleanHref)}
                 className={`text-[0.875rem] transition-colors duration-200 cursor-pointer text-decoration-none ${
                   isActive
-                    ? 'text-[#0f0f1a] font-semibold'
-                    : 'text-[#6b7280] font-medium hover:text-[#0f0f1a]'
+                    ? 'text-white font-semibold'
+                    : 'text-slate-405 hover:text-white font-medium'
                 }`}
               >
                 {link.label}
@@ -107,7 +107,7 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={(e) => handleLinkClick(e, '#contact')}
-            className="bg-[#2563eb] text-white font-semibold text-[0.875rem] px-[18px] py-[9px] rounded-[8px] border-none cursor-pointer transition-all duration-200 hover:bg-[#1d4ed8] hover:scale-[1.02] active:scale-[0.98]"
+            className="font-semibold text-[0.875rem] px-[18px] py-[9px] rounded-[8px] border-none cursor-pointer transition-all duration-200 bg-[#2563eb] text-white hover:bg-[#1d4ed8] hover:scale-[1.02] active:scale-[0.98]"
           >
             Get started &rarr;
           </a>
@@ -115,12 +115,12 @@ export default function Navbar() {
           {/* Button 2: Download ↓ Dropdown */}
           <div className="relative">
             <button
-              onClick={() => setShowDropdown(!showDropdown)}
-              onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
-              className="bg-white border-[1.5px] border-[#e5e7eb] text-[#0f0f1a] font-medium text-[0.875rem] px-[16px] py-[8px] rounded-[8px] cursor-pointer flex items-center gap-[6px] transition-all duration-200 hover:bg-[#f9fafb] hover:border-[#d1d5db]"
+               onClick={() => setShowDropdown(!showDropdown)}
+               onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+               className="font-medium transition-all duration-200 text-[0.875rem] px-[16px] py-[8px] rounded-[8px] cursor-pointer flex items-center gap-[6px] bg-white/10 border-[1.5px] border-white/20 text-white hover:bg-white/20 hover:border-white/30"
             >
               <span>Download</span>
-              <ChevronDown className="w-[14px] h-[14px] text-[#6b7280]" />
+              <ChevronDown className="w-[14px] h-[14px] text-white" />
             </button>
 
             <AnimatePresence>
@@ -130,17 +130,17 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute right-0 mt-2 w-48 bg-white border border-[#e5e7eb] rounded-[10px] shadow-xl py-1 z-50 text-left"
+                  className="absolute right-0 mt-2 w-48 bg-slate-900 border border-slate-800 rounded-[10px] shadow-xl py-1 z-50 text-left"
                 >
                   <a
                     href={`mailto:${personalInfo.email}?subject=Resume%20Request`}
-                    className="block px-4 py-2.5 text-xs text-[#6b7280] font-bold uppercase tracking-wider bg-slate-50 border-b border-slate-100"
+                    className="block px-4 py-2.5 text-xs text-slate-400 font-bold uppercase tracking-wider bg-slate-950 border-b border-slate-850"
                   >
                     Request Full Resume
                   </a>
                   <a
                     href={`mailto:${personalInfo.email}?subject=Resume%20Request`}
-                    className="block px-4 py-2.5 text-sm font-semibold text-[#0f0f1a] hover:bg-slate-50 transition-colors"
+                    className="block px-4 py-2.5 text-sm font-semibold text-slate-200 hover:bg-slate-800 transition-colors"
                   >
                     📄 Standard Resume
                   </a>
@@ -148,7 +148,7 @@ export default function Navbar() {
                     href={personalInfo.github}
                     target="_blank"
                     rel="noreferrer referrerPolicy"
-                    className="block px-4 py-2.5 text-sm font-semibold text-[#0f0f1a] hover:bg-slate-50 transition-colors"
+                    className="block px-4 py-2.5 text-sm font-semibold text-slate-200 hover:bg-slate-800 transition-colors"
                   >
                     🚀 GitHub Portfolio
                   </a>
@@ -165,19 +165,13 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <span
-            className={`w-[22px] h-[2px] bg-[#0f0f1a] rounded-[2px] transition-all duration-300 origin-center ${
-              mobileMenuOpen ? 'rotate-45 translate-y-[7px]' : ''
-            }`}
+            className={`w-[22px] h-[2px] rounded-[2px] transition-all duration-300 origin-center bg-white ${mobileMenuOpen ? 'rotate-45 translate-y-[7px]' : ''}`}
           />
           <span
-            className={`w-[22px] h-[2px] bg-[#0f0f1a] rounded-[2px] transition-all duration-300 ${
-              mobileMenuOpen ? 'opacity-0' : 'opacity-100'
-            }`}
+            className={`w-[22px] h-[2px] rounded-[2px] transition-all duration-300 bg-white ${mobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}
           />
           <span
-            className={`w-[22px] h-[2px] bg-[#0f0f1a] rounded-[2px] transition-all duration-300 origin-center ${
-              mobileMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''
-            }`}
+            className={`w-[22px] h-[2px] rounded-[2px] transition-all duration-300 origin-center bg-white ${mobileMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`}
           />
         </button>
       </div>
@@ -190,7 +184,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-[68px] left-0 right-0 bg-white/98 backdrop-blur-[12px] border-b border-[#f3f4f6] padding: px-[24px] py-[20px] pb-[28px] shadow-[0_8px_32px_rgba(0,0,0,0.08)] flex flex-col z-[999] md:hidden"
+            className="absolute top-[68px] left-0 right-0 bg-slate-950/98 backdrop-blur-[12px] border-b border-slate-900 padding: px-[24px] py-[20px] pb-[28px] shadow-[0_8px_32px_rgba(0,0,0,0.3)] flex flex-col z-[999] md:hidden"
           >
             <div className="flex flex-col">
               {filteredNavLinks.map((link) => {
@@ -202,8 +196,8 @@ export default function Navbar() {
                     key={link.label}
                     href={cleanHref}
                     onClick={(e) => handleLinkClick(e, cleanHref)}
-                    className={`py-[14px] border-b border-[#f9fafb] text-[1rem] font-medium block text-left transition-colors ${
-                      isActive ? 'text-[#0f0f1a] font-semibold' : 'text-[#0f0f1a]'
+                    className={`py-[14px] border-b border-slate-900/50 text-[1rem] font-medium block text-left transition-colors ${
+                      isActive ? 'text-white font-semibold' : 'text-slate-300'
                     }`}
                   >
                     {link.label}
@@ -224,7 +218,7 @@ export default function Navbar() {
               {/* Mobile secondary CTA */}
               <a
                 href={`mailto:${personalInfo.email}?subject=Resume%20Request`}
-                className="bg-white border-[1.5px] border-[#e5e7eb] text-[#0f0f1a] text-center py-3 rounded-[8px] font-medium text-[0.875rem] block w-full hover:bg-slate-50"
+                className="bg-slate-900 border-[1.5px] border-slate-800 text-white text-center py-3 rounded-[8px] font-medium text-[0.875rem] block w-full hover:bg-slate-800"
               >
                 Download CV &darr;
               </a>

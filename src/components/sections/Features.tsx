@@ -30,16 +30,16 @@ export default function Features() {
   ]
 
   return (
-    <section id="features" className="py-20 sm:py-24 bg-white font-sans border-b border-[#f3f4f6]">
+    <section id="features" className="py-20 sm:py-24 bg-transparent font-sans border-b border-slate-900/10">
       <div className="max-w-[1200px] mx-auto px-6 sm:px-12 space-y-12">
         
         {/* Header descriptions label */}
         <div className="space-y-4 max-w-xl text-left">
           <SectionLabel>Core Disciplines</SectionLabel>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f0f1a] leading-tight tracking-tight">
-            Designed for <span className="text-[#2563eb]">Speed &amp; Adaptability</span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-white leading-tight tracking-tight">
+            Designed for <span className="text-blue-400">Speed &amp; Adaptability</span>
           </h2>
-          <p className="text-[#6b7280] text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             I continuously verify and sharpen my technical standards to build highly responsive, secure, and production-ready applications.
           </p>
         </div>

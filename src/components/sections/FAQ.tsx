@@ -84,24 +84,24 @@ export default function FAQ() {
   }
 
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-white font-sans border-b border-[#e5e7eb]">
+    <section id="faq" className="py-24 sm:py-32 bg-transparent font-sans border-b border-slate-900/10">
       <div className="max-w-[1200px] mx-auto px-6 sm:px-12 space-y-12">
         
         {/* FAQ Container Box (exact Deco styling: max-w 800px) */}
-        <div className="max-w-[800px] mx-auto bg-white border border-[#e5e7eb] rounded-[24px] p-6 sm:p-12 shadow-sm space-y-8">
+        <div className="max-w-[800px] mx-auto bg-[#edf4fe] border-2 border-[#a5c3f7] rounded-[24px] p-6 sm:p-12 shadow-[0_8px_0_0_#020409] hover:translate-y-[-4px] hover:shadow-[0_12px_0_0_#020409] transition-all duration-200 space-y-8 text-slate-900">
           
           <div className="space-y-3 text-center">
             <div className="flex justify-center">
               <SectionLabel>FAQ MODULE</SectionLabel>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0f0f1a] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Frequently Asked Questions
             </h2>
           </div>
 
           {/* Tab row (exact Deco pill tabs: inline-flex, centered, gap 4px, margin 24px 0) */}
           <div className="flex justify-center py-2">
-            <div className="inline-flex bg-[#f3f4f6] rounded-full p-1 gap-1 overflow-x-auto whitespace-nowrap max-w-full scrollbar-none">
+            <div className="inline-flex bg-blue-100 border border-blue-200 rounded-full p-1 gap-1 overflow-x-auto whitespace-nowrap max-w-full scrollbar-none shadow-xs">
               {tabs.map((tab) => {
                 const isActive = activeTab === tab.id
                 return (
@@ -111,7 +111,7 @@ export default function FAQ() {
                     className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 cursor-pointer ${
                       isActive
                         ? 'bg-[#2563eb] text-white shadow-md'
-                        : 'text-[#6b7280] hover:text-[#0f0f1a]'
+                        : 'text-blue-900/60 hover:text-blue-950'
                     }`}
                   >
                     {tab.label}
